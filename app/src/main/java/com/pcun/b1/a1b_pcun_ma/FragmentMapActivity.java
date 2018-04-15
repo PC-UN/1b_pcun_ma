@@ -3,6 +3,7 @@ package com.pcun.b1.a1b_pcun_ma;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,8 +17,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -72,6 +75,9 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
     Marker mCurrLocationMarker;
     LatLng latLng;
 
+    static final int DIALOG_FILTER_ID = 0;
+    private FilterResidue mFilter;
+
     private static final String TAG = FragmentMapActivity.class.getSimpleName();
 
 
@@ -81,14 +87,24 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.map_fragment);
 
+        mFilter = new FilterResidue();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.mapf_drawer);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        assert navigationView != null;
-        navigationView.setNavigationItemSelectedListener(this);
 
         PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
@@ -124,13 +140,6 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_navigation_search, menu);
-        final MenuItem searchItem = menu.findItem(R.id.menu_search);
-        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -170,13 +179,14 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_drawer);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.mapf_drawer);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
     }
+
 
     @Override
     public void onPause() {
@@ -385,4 +395,75 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;
     }
+
+    //BOTON PARA FILTRO
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+      /*  //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }*/
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                showDialog(DIALOG_FILTER_ID);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //desplegable
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        Dialog dialog = null;
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+
+        switch(id) {
+            case DIALOG_FILTER_ID:
+
+                builder.setTitle(R.string.action_settings);
+
+                final CharSequence[] levels = {
+                        getResources().getString(R.string.filter_battery),
+                        getResources().getString(R.string.filter_medicine),
+                        getResources().getString(R.string.filter_tire)};
+
+                // Set selected, an integer (0 to n-1), for the Difficulty dialog.
+                int selected = mFilter.getFilter().ordinal();
+
+                // selected is the radio button that should be selected.
+                builder.setSingleChoiceItems(levels, selected,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int item) {
+                                dialog.dismiss();   // Close dialog
+
+                                // TODO: Set the filter based on which item was selected.
+                                FilterResidue.Filter dl = FilterResidue.Filter.values()[item];
+                                mFilter.setFilter(dl);
+
+                                // Display the selected filter
+                                Toast.makeText(getApplicationContext(), levels[item],
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                dialog = builder.create();
+
+                break;
+        }
+        return dialog;
+    }
+
 }

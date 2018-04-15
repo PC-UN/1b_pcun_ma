@@ -4,8 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".FragmentMapActivity">
+    tools:context=".FragmentMapActivity"
+    android:id="@+id/mapf_drawer">
 
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_side_menu"
+        app:menu="@menu/activity_side_menu_drawer"
+        tools:context=".MapsActivity" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,8 +33,8 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            tools:context=".FragmentMapActivity"
             android:layout_weight="0.8"/>
 
     </LinearLayout>
+
 </android.support.v4.widget.DrawerLayout>
