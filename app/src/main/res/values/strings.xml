@@ -11,4 +11,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="filter_battery">Pilas</string>
+    <string name="filter_medicine">Medicamentos</string>
+    <string name="filter_tire">Llantas</string>
+
 </resources>

@@ -1,5 +1,8 @@
 package com.pcun.b1.a1b_pcun_ma;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentActivity;
@@ -8,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -30,20 +34,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 public class MapsActivity extends AppCompatActivity  implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener {
     private GoogleMap mMap;
-
-    // The computer's difficulty levels
-    public enum Filter {Pilas, Medicamentos, Llantas};
-
-    // Current difficulty level
-    //private Filter = Filter.Expert;
-
+    static final int DIALOG_FILTER_ID = 0;
+    private FilterResidue mFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        mFilter = new FilterResidue();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
@@ -91,14 +93,59 @@ public class MapsActivity extends AppCompatActivity  implements OnMapReadyCallba
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+      /*  //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }*/
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                showDialog(DIALOG_FILTER_ID);
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
+    //desplegable
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        Dialog dialog = null;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        switch(id) {
+            case DIALOG_FILTER_ID:
+
+                builder.setTitle(R.string.action_settings);
+
+                final CharSequence[] levels = {
+                        getResources().getString(R.string.filter_battery),
+                        getResources().getString(R.string.filter_medicine),
+                        getResources().getString(R.string.filter_tire)};
+
+                // Set selected, an integer (0 to n-1), for the Difficulty dialog.
+                int selected = mFilter.getFilter().ordinal();
+
+                // selected is the radio button that should be selected.
+                builder.setSingleChoiceItems(levels, selected,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int item) {
+                                dialog.dismiss();   // Close dialog
+
+                                // TODO: Set the filter based on which item was selected.
+                                FilterResidue.Filter dl = FilterResidue.Filter.values()[item];
+                                mFilter.setFilter(dl);
+
+                                // Display the selected filter
+                                Toast.makeText(getApplicationContext(), levels[item],
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                dialog = builder.create();
+
+                break;
+        }
+        return dialog;
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
