@@ -30,7 +30,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-public class MapsActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
+public class MapsActivity extends AppCompatActivity  implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener {
+    private GoogleMap mMap;
+
+    // The computer's difficulty levels
+    public enum Filter {Pilas, Medicamentos, Llantas};
+
+    // Current difficulty level
+    //private Filter = Filter.Expert;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +46,7 @@ public class MapsActivity extends AppCompatActivity  implements NavigationView.O
         setContentView(R.layout.activity_maps);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_drawer);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -49,6 +57,14 @@ public class MapsActivity extends AppCompatActivity  implements NavigationView.O
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+    }
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        LatLng bogota = new LatLng(4.6328849,-74.0570061);
+        mMap.addMarker(new MarkerOptions().position(bogota).title("Bogota"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bogota,14));
     }
 
     @Override
@@ -63,6 +79,7 @@ public class MapsActivity extends AppCompatActivity  implements NavigationView.O
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
