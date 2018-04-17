@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="/media/juancami/Archivador/P/Repo/SA-project/1b_pcun_ma" />
-            <option value="/media/juancami/Archivador/P/Repo/SA-project/1b_pcun_ma/app" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
