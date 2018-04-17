@@ -1,0 +1,36 @@
+query allFavorites {
+	allFavorites {
+        id
+        user_id
+        place_id
+        comment
+  }
+}
+
+query favoriteById($id:Int!) {
+  FavoriteById(id:$id) {
+  	user_id
+    place_id
+    comment
+  }
+}
+
+mutation createFavorite($favoriteInput: FavoriteInput!) {
+  createFavorite(favorite:$favoriteInput) {
+    user_id
+  }
+}
+
+mutation updateFavorite($id:Int!, $favoriteInput:FavoriteInput!){
+  updateFavorite(id:$id, favorite:$favoriteInput){
+		id
+  }
+}
+
+mutation deleteFavorite($id:Int!) {
+  deleteFavorite(id:$id) {
+    user_id
+    place_id
+    comment
+  }
+}
