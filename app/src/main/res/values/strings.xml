@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">1b_pcun_ma</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="title_activity_maps">Map</string>
+    <string name="action_settings">Tipo de residuo</string>
+
+    <string name="menu_search">search</string>
+
+    <string name="filter_battery">Pilas</string>
+    <string name="filter_medicine">Medicamentos</string>
+    <string name="filter_tire">Llantas</string>
+
+
+
+</resources>
