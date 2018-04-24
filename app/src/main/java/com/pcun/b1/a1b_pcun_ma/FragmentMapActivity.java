@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
@@ -75,6 +76,9 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
     Marker mCurrLocationMarker;
     LatLng latLng;
 
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+
     static final int DIALOG_FILTER_ID = 0;
     private FilterResidue mFilter;
 
@@ -92,11 +96,12 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.mapf_drawer);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        mDrawerLayout = findViewById(R.id.mapf_drawer);
+        mToggle = new ActionBarDrawerToggle(
+                this, mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -176,14 +181,27 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
         }
 
     }
-
+    private Boolean exit = false;
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.mapf_drawer);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_drawer);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (exit) {
+                finishAffinity();
+            } else {
+                Toast.makeText(this, "Presione de nuevo ATRAS para salir.",
+                        Toast.LENGTH_SHORT).show();
+                exit = true;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        exit = false;
+                    }
+                }, 2 * 1000);
+            }
         }
     }
 
@@ -392,8 +410,27 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
         return false;
     }
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_account) {
+            Toast.makeText(this, "this is acc", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_favorito) {
+            Intent intent = new Intent(this, FavouriteActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_campana) {
+            Intent intent = new Intent(this, CampaignActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_estadisticas) {
+            Intent intent = new Intent(this, StatActivity.class);
+            startActivity(intent);
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.mapf_drawer);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     //BOTON PARA FILTRO
@@ -411,7 +448,9 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        if(mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
       /*  //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;

@@ -1,0 +1,63 @@
+query allPoints {
+  allPoints{
+    id
+    name
+    category
+    contact
+    email
+    latitude
+    longitude
+  }
+}
+
+query pointById($id:Int!){
+  pointById(id:$id){
+    name
+    category
+    contact
+    email
+    latitude
+    longitude
+  }
+}
+
+query pointByName($name:String!){
+  pointByName(name:$name) {
+    name
+    category
+    contact
+    email
+    latitude
+    longitude
+  }
+}
+
+query pointByPosition($latitude_upper:Float!,
+                      $latitude_lower:Float!,
+					  $longitude_upper:Float!,
+					  $longitude_lower:Float!) {
+                            pointByPosition(latitude_upper:$latitude_upper,
+                                            latitude_lower:$latitude_lower,
+                                            longitude_upper:$longitude_upper,
+                                            longitude_lower:$longitude_lower){
+                              name
+                              category
+                              contact
+                              email
+                              latitude
+                              longitude
+                            }
+                      }
+
+mutation createPoint($pointInput:PointInput!){
+  createPoint(point:$pointInput) {
+	id
+    name
+    category
+    contact
+    email
+    latitude
+    longitude
+    address
+  }
+}
