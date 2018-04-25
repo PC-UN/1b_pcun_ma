@@ -3,7 +3,6 @@ package com.pcun.b1.a1b_pcun_ma;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,7 +23,7 @@ public class PointConnection {
     private OkHttpClient okHttpClient;
     private static final String URL = "http://35.196.104.239:3307/graphql";
 
-    private ArrayAdapter arrayAdapter;
+    private PointAdapter pointAdapter;
     private ListView listView;
 
     public PointConnection() {
@@ -42,19 +41,14 @@ public class PointConnection {
             @Override
             public void onResponse(@Nonnull final Response<AllPoints.Data> response) {
                 Log.d(TAG, "REQUEST SUCCEED!");
-                ArrayList<AllPoints.AllPoint> data = new ArrayList<>(response.data().allPoints());
-                final String[] names = new String[data.size()];
-                for(int i = 0; i < data.size(); i++)
-                    names[i] = data.get(i).name();
-
+                final ArrayList<AllPoints.AllPoint> data = new ArrayList<>(response.data().allPoints());
 
                 context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         listView = (ListView) context.findViewById(android.R.id.list);
-                        arrayAdapter = new ArrayAdapter(context, android.R.layout.simple_list_item_1, names);
-
-                        listView.setAdapter(arrayAdapter);
+                        pointAdapter = new PointAdapter(context, data);
+                        listView.setAdapter(pointAdapter);
                     }
                 });
 
