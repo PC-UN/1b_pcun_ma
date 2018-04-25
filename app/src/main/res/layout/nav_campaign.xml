@@ -6,4 +6,11 @@
     android:id="@+id/nav_campaign"
     tools:context="com.pcun.b1.a1b_pcun_ma.CampaignActivity">
 
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ListView>
+
+
 </android.support.constraint.ConstraintLayout>
