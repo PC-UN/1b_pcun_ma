@@ -70,6 +70,10 @@ public class DisposalPointConnection {
         return 0;
     }
 
+    public DisposalPointAdapter getDisposalPointAdapter() {
+        return disposalPointAdapter;
+    }
+
     public void pointById(int id, final AppCompatActivity context) {
         PointById pointById = PointById.builder().id(id).build();
 
