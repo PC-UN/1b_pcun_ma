@@ -10,7 +10,8 @@ public class CampaignActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_campaign);
 
-        PointConnection pointConnection = new PointConnection();
-        pointConnection.allPoints(this);
+        DisposalPointConnection disposalPointConnection =
+                new DisposalPointConnection();
+        disposalPointConnection.allPointsBasic(this);
     }
 }

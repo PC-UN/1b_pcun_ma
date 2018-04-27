@@ -1,0 +1,27 @@
+query allDisposalPointsBasic {
+  allDisposalPoints {
+    id
+    disposal_point_name
+    city
+    department
+    residue_category
+    contact_person
+    email
+    location
+  }
+}
+
+query disposalPointById($id:Int!){
+  disposalPointById(id:$id){
+    disposal_point_name
+    city
+    department
+    residue_category
+    contact_person
+    email
+    location
+  }
+}
+
+
+
