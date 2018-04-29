@@ -1,8 +1,11 @@
 package com.pcun.b1.a1b_pcun_ma;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,6 +38,43 @@ public class DisposalPointConnection {
                 .build();
     }
 
+    public static class Marker {
+        public double lat;
+        public double lon;
+        public String contactPerson;
+        public String disposalPointName;
+        public String eMail;
+
+        public Marker(double lat, double lon) {
+            this.lat = lat;
+            this.lon = lon;
+            this.contactPerson = "";
+            this.disposalPointName = "";
+            this.eMail = "";
+        }
+    }
+
+    /*
+     we assume that s has the following format:
+        (1.2345678, -9.8765432)
+    */
+    public Marker parseLocation(String s) {
+        String strNum = "";
+        double lat = 0;
+        double lon = 0;
+        for(int i = 1; i < s.length() - 1; i++) {
+            if(s.charAt(i) == ',' || s.charAt(i) == ' ') {
+                if(strNum != "")
+                    lon = new Double(strNum).doubleValue();
+                strNum = "";
+                continue;
+            }
+            strNum += s.charAt(i);
+        }
+        lat = new Double(strNum).doubleValue();
+        return new Marker(lat, lon);
+    }
+
     public int allPointsBasic(final Activity context) {
         apolloClient.query(
                 AllDisposalPointsBasic.builder().build()
@@ -52,6 +92,17 @@ public class DisposalPointConnection {
                             disposalPointAdapter = new DisposalPointAdapter(context, data);
 
                             listView.setAdapter(disposalPointAdapter);
+                            listView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        String location = data.get(position).location();
+                                        Marker marker = parseLocation(location);
+                                        Intent intent = new Intent(context, FragmentMapActivity.class);
+                                        intent.putExtra("latitude", marker.lat);
+                                        intent.putExtra("longitude", marker.lon);
+                                        context.startActivity(intent);
+                                    }
+                                }
+                            );
                         }
                     });
                 }

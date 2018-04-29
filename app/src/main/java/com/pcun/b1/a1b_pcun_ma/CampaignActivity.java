@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 
 public class CampaignActivity extends AppCompatActivity {
+    public final String TAG = "debug_lines";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate campaign activity...");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_campaign);
         EditText filter_text = (EditText) findViewById(R.id.search_filter);

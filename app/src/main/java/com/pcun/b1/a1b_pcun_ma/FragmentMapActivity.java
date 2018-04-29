@@ -14,6 +14,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -82,7 +83,7 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
     static final int DIALOG_FILTER_ID = 0;
     private FilterResidue mFilter;
 
-    private static final String TAG = FragmentMapActivity.class.getSimpleName();
+    private static final String TAG = "debug_lines";
 
 
     @Override
@@ -128,7 +129,6 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
         } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
             // TODO: Handle the error.
         }
-
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -179,6 +179,16 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
             mGoogleMap.setMyLocationEnabled(true);
             mGoogleMap.setOnMyLocationButtonClickListener(this);
         }
+
+        Intent intent = getIntent();
+        double lat = intent.getDoubleExtra("latitude", 0);
+        double lon = intent.getDoubleExtra("longitude", 0);
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(new LatLng(lat, lon));
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        mGoogleMap.addMarker(markerOptions);
+        String msg = new String("draw marker at: " + (new Double(lat).toString()) + " " + (new Double(lon).toString()));
+        Snackbar.make(findViewById(R.id.map), msg, Snackbar.LENGTH_LONG).show();
 
     }
     private Boolean exit = false;

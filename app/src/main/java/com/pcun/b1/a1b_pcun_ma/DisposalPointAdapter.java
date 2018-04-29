@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class DisposalPointAdapter extends ArrayAdapter<AllDisposalPointsBasic.AllDisposalPoint> implements View.OnClickListener {
+public class DisposalPointAdapter extends ArrayAdapter<AllDisposalPointsBasic.AllDisposalPoint> {
     final String TAG = "debug_line";
     private ArrayList<AllDisposalPointsBasic.AllDisposalPoint> dataset;
     Context mContext;
@@ -30,11 +30,6 @@ public class DisposalPointAdapter extends ArrayAdapter<AllDisposalPointsBasic.Al
         super(context, R.layout.disposal_point_item, data);
         this.dataset = data;
         this.mContext = context;
-    }
-
-    @Override
-    public void onClick(View v) {
-        Log.d(TAG, "onClick method...");
     }
 
     @Override
