@@ -13,6 +13,7 @@ import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloClient;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
+import com.pcun.b1.a1b_pcun_ma.type.DisposalPointInput;
 
 import java.util.ArrayList;
 
@@ -97,6 +98,7 @@ public class DisposalPointConnection {
                                         String location = data.get(position).location();
                                         Marker marker = parseLocation(location);
                                         Intent intent = new Intent(context, FragmentMapActivity.class);
+                                        intent.putExtra("from", 1);
                                         intent.putExtra("latitude", marker.lat);
                                         intent.putExtra("longitude", marker.lon);
                                         context.startActivity(intent);
@@ -209,5 +211,40 @@ public class DisposalPointConnection {
         });
     }
 
+    public void createDisposalPoint(String disposal_point_name, String disposal_point_address,
+                                    String city, String department, String country, String residue_category,
+                                    String residue_type, String residue_name, String location,
+                                    String schedule, String program_name, String contact_person, String email) {
+
+        DisposalPointInput disposalPointInput = DisposalPointInput.builder()
+                .disposal_point_name(disposal_point_name)
+                .disposal_point_address(disposal_point_address)
+                .city(city).department(department).country(country)
+                .residue_category(residue_category)
+                .residue_type(residue_type)
+                .residue_name(residue_name)
+                .location(location)
+                .schedule(schedule)
+                .postconsumption_program_name(program_name)
+                .contact_person(contact_person)
+                .email(email).build();
+
+        CreateDisposalPoint createDisposalPoint = CreateDisposalPoint.builder().disposalPoint(disposalPointInput).build();
+
+        apolloClient.mutate(
+                createDisposalPoint
+        ).enqueue(new ApolloCall.Callback<CreateDisposalPoint.Data>() {
+            @Override
+            public void onResponse(@Nonnull Response<CreateDisposalPoint.Data> response) {
+                Log.d(TAG, "Disposal Point created");
+                Log.d(TAG, response.data().toString());
+            }
+
+            @Override
+            public void onFailure(@Nonnull ApolloException e) {
+                Log.d(TAG, "Disposal Point creation failed...");
+            }
+        });
+    }
 
 }

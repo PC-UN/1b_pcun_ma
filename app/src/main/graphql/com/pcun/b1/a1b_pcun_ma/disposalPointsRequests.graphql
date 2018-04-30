@@ -23,5 +23,21 @@ query disposalPointById($id:Int!){
   }
 }
 
-
+mutation createDisposalPoint($disposalPoint:DisposalPointInput!){
+  createDisposalPoint(disposalPoint:$disposalPoint) {
+    disposal_point_name
+    disposal_point_address
+    city
+    department
+    country
+    residue_category
+    residue_type
+    residue_name
+    location
+    schedule
+    postconsumption_program_name
+    contact_person
+    email
+  }
+}
 

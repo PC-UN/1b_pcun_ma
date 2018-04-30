@@ -181,14 +181,19 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
         }
 
         Intent intent = getIntent();
-        double lat = intent.getDoubleExtra("latitude", 0);
-        double lon = intent.getDoubleExtra("longitude", 0);
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(new LatLng(lat, lon));
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-        mGoogleMap.addMarker(markerOptions);
-        String msg = new String("draw marker at: " + (new Double(lat).toString()) + " " + (new Double(lon).toString()));
-        Snackbar.make(findViewById(R.id.map), msg, Snackbar.LENGTH_LONG).show();
+        int status = intent.getIntExtra("from", -1);
+        if(status == 1) {   // see DisposalPointConnection.allPointBasic().onResponse()
+            double lat = intent.getDoubleExtra("latitude", 0);
+            double lon = intent.getDoubleExtra("longitude", 0);
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(new LatLng(lat, lon));
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+            mGoogleMap.addMarker(markerOptions);
+            String msg = new String("draw marker at: " + (new Double(lat).toString()) + " " + (new Double(lon).toString()));
+            Snackbar.make(findViewById(R.id.map), msg, Snackbar.LENGTH_LONG).show();
+        } else if(status == 2) { // see CreatePointForm.onCreateButtonClick()
+            Snackbar.make(findViewById(R.id.map), "Punto Creado.", Snackbar.LENGTH_LONG).show();
+        }
 
     }
     private Boolean exit = false;
