@@ -41,3 +41,10 @@ mutation createDisposalPoint($disposalPoint:DisposalPointInput!){
   }
 }
 
+query peoplePerDisposal {
+  peoplePerDisposal {
+    item
+    quantity
+  }
+}
+

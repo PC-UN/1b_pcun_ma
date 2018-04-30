@@ -247,4 +247,7 @@ public class DisposalPointConnection {
         });
     }
 
+    public void peoplePerDisposal() {
+        
+    }
 }
