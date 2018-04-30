@@ -13,9 +13,16 @@ import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloClient;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.pcun.b1.a1b_pcun_ma.type.DisposalPointInput;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Nonnull;
 
@@ -247,7 +254,52 @@ public class DisposalPointConnection {
         });
     }
 
-    public void peoplePerDisposal() {
-        
+    public void peoplePerDisposal(final Activity context) {
+        apolloClient.query(
+            PeoplePerDisposal.builder().build()
+        ).enqueue(new ApolloCall.Callback<PeoplePerDisposal.Data>() {
+            @Override
+            public void onResponse(@Nonnull Response<PeoplePerDisposal.Data> response) {
+                Log.d(TAG, "REQUEST SUCCEED!");
+                if(response.data() != null) {
+                    final ArrayList<PeoplePerDisposal.PeoplePerDisposal1> data =
+                            new ArrayList<>(response.data().peoplePerDisposal());
+                            context.runOnUiThread(new Runnable() {
+                                                      @Override
+                                                      public void run() {
+                                                          BarChart chart = (BarChart) context.findViewById(R.id.chart);
+
+                                                          List<BarEntry> dataSet = new ArrayList<>();
+                                                          List<String> labels = new ArrayList<>();
+
+                                                          float i = 0;
+                                                          for(PeoplePerDisposal.PeoplePerDisposal1 entry : data) {
+                                                              dataSet.add(new BarEntry(i++, entry.quantity().floatValue(), entry.item()));
+                                                              labels.add(entry.item());
+                                                          }
+
+                                                          BarDataSet set = new BarDataSet(dataSet, "Cant. Personas por Punto");
+                                                          BarData data = new BarData(set);
+                                                          data.setValueTextSize(10f);
+                                                          chart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
+                                                          chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+                                                          chart.setFitBars(true);
+                                                          chart.setData(data);
+                                                          chart.invalidate();
+                                                      }
+                                                  }
+
+                            );
+                } else {
+                    Log.d(TAG, "Connection with stats-ms missed or DB empty...");
+                }
+            }
+
+            @Override
+            public void onFailure(@Nonnull ApolloException e) {
+                Log.d(TAG, "REQUEST FAILED");
+
+            }
+        });
     }
 }
