@@ -10,13 +10,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-public class CampaignActivity extends AppCompatActivity {
+public class AllPointsActivity extends AppCompatActivity {
     public final String TAG = "debug_lines";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate campaign activity...");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.nav_campaign);
+        setContentView(R.layout.nav_all_points);
         EditText filter_text = (EditText) findViewById(R.id.search_filter);
 
         final DisposalPointConnection disposalPointConnection =
