@@ -1,6 +1,7 @@
 package com.pcun.b1.a1b_pcun_ma;
 
 import android.content.Context;
+import android.support.design.widget.NavigationView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,5 +72,6 @@ public class PointAdapter extends ArrayAdapter<AllPoints.AllPoint> implements Vi
 
         return convertView;
     }
+
 }
 

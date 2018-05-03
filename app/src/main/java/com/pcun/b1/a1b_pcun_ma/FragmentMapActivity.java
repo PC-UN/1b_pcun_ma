@@ -433,6 +433,9 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
             Toast.makeText(this, "this is acc", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ProfileActivity.class);
             startActivity(intent);
+        } else if (id == R.id.nav_map) {
+            Intent intent = new Intent(this, FragmentMapActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_favorito) {
             Intent intent = new Intent(this, FavouriteActivity.class);
             startActivity(intent);

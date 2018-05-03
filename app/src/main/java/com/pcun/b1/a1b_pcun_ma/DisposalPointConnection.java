@@ -32,8 +32,8 @@ public class DisposalPointConnection {
     private final String TAG = "debug_lines";
     private ApolloClient apolloClient;
     private OkHttpClient okHttpClient;
-    // private static final String URL = "http://35.196.104.239:3307/graphql";
-    private static final String URL = "http://10.0.2.2:5000/graphql";
+    private static final String URL = "http://35.196.104.239:3307/graphql";
+    //private static final String URL = "http://10.0.2.2:5000/graphql";
 
     private DisposalPointAdapter disposalPointAdapter;
     private ListView listView;

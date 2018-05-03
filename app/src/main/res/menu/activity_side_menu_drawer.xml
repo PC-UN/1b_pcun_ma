@@ -5,6 +5,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_map"
+            android:icon="@mipmap/ic_place_black_24dp"
+            android:title="Mapa" />
+        <item
             android:id="@+id/nav_account"
             android:icon="@mipmap/ic_person_black_24dp"
             android:title="Mi perfil" />
@@ -22,16 +26,5 @@
             android:title="Estadisticas" />
 
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:title="Send" />
-        </menu>
-    </item>
 
 </menu>
