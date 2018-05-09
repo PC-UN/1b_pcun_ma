@@ -1,0 +1,20 @@
+mutation auth($auth:AuthInput!){
+  auth(auth:$auth) {
+    email
+    password
+    answer
+  }
+}	
+
+mutation createSession($auth:SessionInput!){
+  createSession(auth:$auth){
+    jwt
+  }
+} 
+
+query checkSession($token:TokenInput!) {
+  checkSession(token:$token) {
+    id
+  	username
+  }
+}
