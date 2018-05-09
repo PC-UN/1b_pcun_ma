@@ -193,8 +193,12 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
             Snackbar.make(findViewById(R.id.map), msg, Snackbar.LENGTH_LONG).show();
         } else if(status == 2) { // see CreatePointForm.onCreateButtonClick()
             Snackbar.make(findViewById(R.id.map), "Punto Creado.", Snackbar.LENGTH_LONG).show();
-        } else if(status == 3) { // see CreateUserActivity.onRegisterPressed()
-            Snackbar.make(findViewById(R.id.map), "Registro Exitoso!", Snackbar.LENGTH_LONG).show();
+        } else if(status == 3) { // see CreateUserActivity.onRegisterPressed() ~~> UserConnection.createUser()
+            String username = intent.getStringExtra("username");
+            Snackbar.make(findViewById(R.id.map), "Registro del usuario " + username + " exitosa!", Snackbar.LENGTH_LONG).show();
+        } else if(status == 4) { // see AuthenticationActivity.onAccessPressed() ~~> AuthConnection.authenticate()
+            String email = intent.getStringExtra("email");
+            Snackbar.make(findViewById(R.id.map), "Bienvenido " + email, Snackbar.LENGTH_LONG).show();
         }
 
     }

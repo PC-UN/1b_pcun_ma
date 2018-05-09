@@ -1,0 +1,4 @@
+>> in CreateUserActivity.java
+  - Case handling:
+    > if user get created. 
+    > if user cannot be created.

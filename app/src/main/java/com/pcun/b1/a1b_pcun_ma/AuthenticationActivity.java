@@ -23,7 +23,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         String username = ((EditText) findViewById(R.id.auth_username)).getText().toString();
         String password = ((EditText) findViewById(R.id.auth_password)).getText().toString();
 
-        authConnection.authenticate(username, password);
+        authConnection.authenticate(username, password, this);
     }
 
     public void onRegisterPressed(View view) {

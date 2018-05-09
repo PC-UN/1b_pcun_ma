@@ -2,6 +2,7 @@ package com.pcun.b1.a1b_pcun_ma;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 
 import com.apollographql.apollo.ApolloCall;
@@ -48,12 +49,14 @@ public class UserConnection {
 
                 Intent intent = new Intent(context, FragmentMapActivity.class);
                 intent.putExtra("from", 3);
+                intent.putExtra("username", username);
                 context.startActivity(intent);
             }
 
             @Override
             public void onFailure(@Nonnull ApolloException e) {
                 Log.d(TAG, "User creation failed...");
+                Snackbar.make(context.findViewById(R.id.auth_canvas), "No se puede conectar con el servidor.", Snackbar.LENGTH_LONG).show();
             }
         });
     }

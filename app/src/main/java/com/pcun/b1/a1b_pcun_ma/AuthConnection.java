@@ -1,5 +1,8 @@
 package com.pcun.b1.a1b_pcun_ma;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 
 import com.apollographql.apollo.ApolloCall;
@@ -26,7 +29,7 @@ public class AuthConnection {
                 .build();
     }
 
-    public void authenticate(String email, String password) {
+    public void authenticate(String email, String password, final Activity context) {
         AuthInput authInput = AuthInput.builder()
                 .email(email)
                 .password(password)
@@ -39,15 +42,23 @@ public class AuthConnection {
         ).enqueue(new ApolloCall.Callback<Auth.Data>() {
             @Override
             public void onResponse(@Nonnull Response<Auth.Data> response) {
-                if (new Boolean(response.data().auth().answer()).booleanValue())
+                if (new Boolean(response.data().auth().answer()).booleanValue()) {
                     Log.d(TAG, "Authentication Successful!");
-                else
+                    Intent intent = new Intent(context, FragmentMapActivity.class);
+                    intent.putExtra("from", 4);
+                    intent.putExtra("email", response.data().auth().email());
+                    context.startActivity(intent);
+                } else {
                     Log.d(TAG, "Authentication Failed...");
+                    Snackbar.make(context.findViewById(R.id.auth_canvas), "Usuario o contraseña incorrectos.", Snackbar.LENGTH_LONG).show();
+                }
             }
 
             @Override
             public void onFailure(@Nonnull ApolloException e) {
                 Log.d(TAG, "Unable to connect to GraphQL server...");
+                Snackbar.make(context.findViewById(R.id.auth_canvas), "No se puede conectar con el servidor.", Snackbar.LENGTH_LONG).show();
+
             }
         });
     }
