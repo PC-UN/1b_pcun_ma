@@ -22,9 +22,11 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".FragmentMapActivity"
+            android:name=".LoginActivity"
             android:label="@string/title_activity_maps">
+            android:screenOrientation="portrait">
             <meta-data
+
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pcun.b1.a1b_pcun_ma.FragmentMapActivity" />
 
@@ -38,7 +40,9 @@
         <activity android:name=".FavouriteActivity" />
         <activity android:name=".AllPointsActivity" />
         <activity android:name=".StatActivity" />
-        <activity android:name=".CreatePointForm"></activity>
+        <activity android:name=".CreatePointForm" />
+        <activity android:name=".FragmentMapActivity" />
+        <activity android:name=".RegisterActivity"></activity>
     </application>
 
 </manifest>

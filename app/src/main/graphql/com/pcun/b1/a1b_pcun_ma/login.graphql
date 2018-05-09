@@ -1,0 +1,13 @@
+mutation LoginMutation(
+  $email: String!
+  $password: String!
+  ){
+  createSession(
+     email: $email,
+     password: $password
+  ){
+     userid
+     username
+     email
+  }
+}

@@ -1,0 +1,10 @@
+query UserByIdQuery(
+    $userid: Int!
+){
+  userById(
+  userid:$userid
+  ){
+    username
+    email
+  }
+}
