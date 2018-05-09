@@ -25,5 +25,10 @@
     <string name="email">email</string>
     <string name="program_name">programa</string>
     <string name="create_point">Crear Punto</string>
+    <string name="username">Nombre de Usuario</string>
+    <string name="password">contraseña</string>
+    <string name="access">Acceder</string>
+    <string name="no_account_notice">¿No tienes cuenta de usuario?</string>
+    <string name="register">Registrarse</string>
 
 </resources>
