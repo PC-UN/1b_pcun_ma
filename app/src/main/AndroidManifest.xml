@@ -38,7 +38,8 @@
         <activity android:name=".FavouriteActivity" />
         <activity android:name=".AllPointsActivity" />
         <activity android:name=".StatActivity" />
-        <activity android:name=".CreatePointForm"></activity>
+        <activity android:name=".CreatePointForm" />
+        <activity android:name=".AuthenticationActivity"></activity>
     </application>
 
 </manifest>

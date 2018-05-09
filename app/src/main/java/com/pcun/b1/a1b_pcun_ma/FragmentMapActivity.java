@@ -445,6 +445,9 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
         } else if (id == R.id.nav_estadisticas) {
             Intent intent = new Intent(this, StatActivity.class);
             startActivity(intent);
+        } else if (id == R.id.nav_authentication) {
+            Intent intent = new Intent(this, AuthenticationActivity.class);
+            startActivity(intent);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.mapf_drawer);
         drawer.closeDrawer(GravityCompat.START);

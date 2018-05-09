@@ -24,7 +24,10 @@
             android:id="@+id/nav_estadisticas"
             android:icon="@mipmap/ic_timeline_black_24dp"
             android:title="Estadisticas" />
-
+        <item
+            android:id="@+id/nav_authentication"
+            android:icon="@mipmap/ic_person_black_24dp"
+            android:title="Autenticación" />
     </group>
 
 </menu>
