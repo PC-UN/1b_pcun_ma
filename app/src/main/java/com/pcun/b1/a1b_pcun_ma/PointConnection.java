@@ -1,8 +1,11 @@
 package com.pcun.b1.a1b_pcun_ma;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,6 +37,10 @@ public class PointConnection {
                 .build();
     }
 
+    public PointAdapter getPointAdapter() {
+        return pointAdapter;
+    }
+
     public int allPoints(final Activity context) {
         apolloClient.query(
                 AllPoints.builder().build()
@@ -42,15 +49,28 @@ public class PointConnection {
             public void onResponse(@Nonnull final Response<AllPoints.Data> response) {
                 Log.d(TAG, "REQUEST SUCCEED!");
                 final ArrayList<AllPoints.AllPoint> data = new ArrayList<>(response.data().allPoints());
-
-                context.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        listView = (ListView) context.findViewById(android.R.id.list);
-                        pointAdapter = new PointAdapter(context, data);
-                        listView.setAdapter(pointAdapter);
-                    }
-                });
+                if(response.data() != null) {
+                    context.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            listView = (ListView) context.findViewById(android.R.id.list);
+                            pointAdapter = new PointAdapter(context, data);
+                            listView.setAdapter(pointAdapter);
+                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                                                    Intent intent = new Intent(context, FragmentMapActivity.class);
+                                                                    intent.putExtra("from", 1);
+                                                                    intent.putExtra("latitude", data.get(position).latitude());
+                                                                    intent.putExtra("longitude", data.get(position).longitude());
+                                                                    context.startActivity(intent);
+                                                                }
+                                                            }
+                            );
+                        }
+                    });
+                } else {
+                    Log.d(TAG, "Connection with stats-ms missed or DB empty...");
+                }
 
             }
 

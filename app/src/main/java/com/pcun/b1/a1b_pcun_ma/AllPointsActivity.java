@@ -19,19 +19,19 @@ public class AllPointsActivity extends AppCompatActivity implements NavigationVi
     public final String TAG = "debug_lines";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate campaign activity...");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_all_points);
         EditText filter_text = (EditText) findViewById(R.id.search_filter);
 
-        final DisposalPointConnection disposalPointConnection =
-                new DisposalPointConnection();
-        disposalPointConnection.allPointsBasic(this);
+        Log.d(TAG, "Descargando todos los puntos... (aprox 9500 puntos)... esperar...");
+        final PointConnection pointConnection =
+                new PointConnection();
+        pointConnection.allPoints(this);
 
         filter_text.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                disposalPointConnection.getDisposalPointAdapter().getFilter().filter(charSequence);
+                pointConnection.getPointAdapter().getFilter().filter(charSequence);
             }
 
             @Override

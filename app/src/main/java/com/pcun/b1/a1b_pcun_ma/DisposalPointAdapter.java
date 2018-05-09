@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class DisposalPointAdapter extends ArrayAdapter<AllDisposalPointsBasic.AllDisposalPoint> {
-    final String TAG = "debug_line";
+    final String TAG = "debug_lines";
     private ArrayList<AllDisposalPointsBasic.AllDisposalPoint> dataset;
     Context mContext;
 
