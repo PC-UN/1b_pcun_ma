@@ -84,6 +84,7 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
     private FilterResidue mFilter;
 
     private static final String TAG = "debug_lines";
+    private static final String TAG2 = "informative";
 
 
     @Override
@@ -168,11 +169,11 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
                 buildGoogleApiClient();
                 mGoogleMap.setMyLocationEnabled(true);
                 mGoogleMap.setOnMyLocationButtonClickListener(this);
-                Log.i(TAG, "hasta enable");
+                Log.i(TAG2, "hasta enable");
             } else {
                 //Request Location Permission
                 checkLocationPermission();
-                Log.i(TAG, "permiso1");
+                Log.i(TAG2, "permiso1");
             }
         } else {
             buildGoogleApiClient();
@@ -234,7 +235,7 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
         //stop location updates when Activity is no longer active
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-            Log.i(TAG, "llamada onpause");
+            Log.i(TAG2, "llamada onpause");
         }
     }
 
@@ -258,7 +259,7 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-            Log.i(TAG, "onconnected permiso");
+            Log.i(TAG2, "onconnected permiso");
         }
     }
 
@@ -269,7 +270,7 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.i(TAG, "conexion falla");
+        Log.i(TAG2, "conexion falla");
     }
 
     @Override
@@ -291,7 +292,7 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
 
         //move map camera
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
-        Log.i(TAG, "camara con zoom");
+        Log.i(TAG2, "camara con zoom");
 
         //stop location updates
         if (mGoogleApiClient != null) {
@@ -307,7 +308,7 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
-                Log.i(TAG, "permiso para ub");
+                Log.i(TAG2, "permiso para ub");
                 // Show an explanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
@@ -369,7 +370,7 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
     }
     @Override
     public void onPlaceSelected(Place place) {
-        Log.i(TAG, "Place Selected al final: " + place.getName());
+        Log.i(TAG2, "Place Selected al final: " + place.getName());
         LatLng latLngs = place.getLatLng();
         mCurrLocationMarker.remove();
         MarkerOptions markerOptions = new MarkerOptions();
@@ -392,11 +393,11 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
         mCurrLocationMarker.remove();
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
-        Log.v(TAG, "current location = " + latLng.toString());
+        Log.v(TAG2, "current location = " + latLng.toString());
         markerOptions.title("Current Position");
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
         markerOptions.draggable(true);
-        Log.i(TAG, "color del marcador");
+        Log.i(TAG2, "color del marcador");
         mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
         mCurrLocationMarker.setPosition(latLng);
         mCurrLocationMarker.setDraggable(true);
@@ -407,7 +408,7 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
 
     @Override
     public void onError(Status status) {
-        Log.e(TAG, "onError al final: Status = " + status.toString());
+        Log.e(TAG2, "onError al final: Status = " + status.toString());
         Toast.makeText(this, "Place selection failed: " + status.getStatusMessage(),
                 Toast.LENGTH_SHORT).show();
     }
@@ -423,7 +424,7 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
     @Override
     public void onMarkerDrag(Marker marker) {
         LatLng posicionMarcador = marker.getPosition();
-        Log.i(TAG, "marker position" + posicionMarcador.latitude + "," + posicionMarcador.longitude );
+        Log.i(TAG2, "marker position" + posicionMarcador.latitude + "," + posicionMarcador.longitude );
     }
 
     @Override
