@@ -116,13 +116,18 @@ public class AuthConnection {
         apolloClient.query(
                 checkSession
         ).enqueue(new ApolloCall.Callback<CheckSession.Data>() {
+            GlobalData globalData = (GlobalData) context.getApplication();
             @Override
             public void onResponse(@Nonnull Response<CheckSession.Data> response) {
                 if(response.data() != null) {
                     Log.d(TAG, response.data().checkSession().username() + " has validated session. ");
-                    ((GlobalData) context.getApplication()).setCurrentUser(response.data().checkSession().id());
+                    globalData.setSessionVerified(true);
+                    globalData.setCurrentUser(response.data().checkSession().id());
                 } else {
                     Log.d(TAG, "The session does not exist...");
+                    globalData.setSessionVerified(true);
+                    globalData.setCurrentUser(-1);
+
                 }
             }
 

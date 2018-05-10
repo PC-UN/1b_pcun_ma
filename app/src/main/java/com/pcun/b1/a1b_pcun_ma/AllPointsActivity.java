@@ -48,7 +48,6 @@ public class AllPointsActivity extends AppCompatActivity implements NavigationVi
     }
 
     public void onButtonClick(View view) {
-
         /*
             The true branch of following sentence validates that
             user be logged in app.
@@ -62,8 +61,8 @@ public class AllPointsActivity extends AppCompatActivity implements NavigationVi
         } else {
             Toast.makeText(this, "Debes iniciar sesión para crear un punto.", Toast.LENGTH_SHORT).show();
         }
-
     }
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.

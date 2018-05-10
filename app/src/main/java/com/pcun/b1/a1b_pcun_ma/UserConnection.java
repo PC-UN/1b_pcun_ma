@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloClient;
@@ -59,5 +60,34 @@ public class UserConnection {
                 Snackbar.make(context.findViewById(R.id.auth_canvas), "No se puede conectar con el servidor.", Snackbar.LENGTH_LONG).show();
             }
         });
+    }
+
+    public static void closeSession(Activity context) {
+        ((GlobalData) context.getApplication()).setSessionToken("");
+        ((GlobalData) context.getApplication()).setCurrentUser(-1);
+        ((GlobalData) context.getApplication()).setSessionVerified(false);
+    }
+
+
+    /*
+        If user is logged, return its ID, else returns -1.
+     */
+    public static int checkSession(Activity context) {
+        /*
+            The true branch of following sentence validates that
+            user be logged in app.
+        */
+        int userId = -1;
+        GlobalData globalData = (GlobalData) context.getApplication();
+        if(globalData.getSessionToken() != "") {
+            AuthConnection authConnection = new AuthConnection();
+            authConnection.checkSession(globalData.getSessionToken(), context);
+            while (!globalData.isSessionVerified()) ;
+            if(globalData.getCurrentUser() != -1)
+                userId = globalData.getCurrentUser();
+        } else {
+            Toast.makeText(context, "Debes iniciar sesión.", Toast.LENGTH_SHORT).show();
+        }
+        return userId;
     }
 }

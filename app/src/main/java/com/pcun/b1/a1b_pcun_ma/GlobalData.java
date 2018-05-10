@@ -4,8 +4,8 @@ import android.app.Application;
 
 public class GlobalData extends Application {
     private String sessionToken = "";
-    private boolean isSessionVerified = false;
-    private int currentUser = -1;
+    private boolean isSessionVerified = false; // Used for thread purposes...
+    private int currentUser = -1;              // Mostly of time is -1...
     private String currentUsername = "";
 
     public String getSessionToken() {

@@ -30,5 +30,6 @@
     <string name="access">Acceder</string>
     <string name="no_account_notice">¿No tienes cuenta de usuario?</string>
     <string name="register">Registrarse</string>
+    <string name="close_session">Cerrar Sesión</string>
 
 </resources>

@@ -200,6 +200,8 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
         } else if(status == 4) { // see AuthenticationActivity.onAccessPressed() ~~> AuthConnection.authenticate()
             String email = intent.getStringExtra("email");
             Snackbar.make(findViewById(R.id.map), "Bienvenido " + email, Snackbar.LENGTH_LONG).show();
+        } else if(status == 5) { // see AuthenticationActivity.onEndSessionPressed()
+            Snackbar.make(findViewById(R.id.map), "Sesión finalizada.", Snackbar.LENGTH_LONG).show();
         }
 
     }
