@@ -48,9 +48,20 @@ public class AllPointsActivity extends AppCompatActivity implements NavigationVi
     }
 
     public void onButtonClick(View view) {
-        Intent intent = new Intent(this, CreatePointForm.class);
-        startActivity(intent);
 
+        /*
+            The true branch of following sentence validates that
+            user be logged in app.
+        */
+        if(((GlobalData) this.getApplication()).getSessionToken() != "") {
+            AuthConnection authConnection = new AuthConnection();
+            authConnection.checkSession(((GlobalData) this.getApplication()).getSessionToken(), this);
+            while (((GlobalData) this.getApplication()).isSessionVerified()) ;
+            Intent intent = new Intent(this, CreatePointForm.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Debes iniciar sesión para crear un punto.", Toast.LENGTH_SHORT).show();
+        }
 
     }
     @Override

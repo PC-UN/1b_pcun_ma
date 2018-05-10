@@ -15,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/disposal_point_name"
+        android:hint="@string/disposal_point_name"
         app:layout_constraintBottom_toTopOf="@+id/editText2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -28,7 +28,7 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/disposal_point_address"
+        android:hint="@string/disposal_point_address"
         app:layout_constraintBottom_toTopOf="@+id/editText3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText1" />
@@ -40,7 +40,7 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/city"
+        android:hint="@string/city"
         app:layout_constraintBottom_toTopOf="@+id/editText4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText2" />
@@ -52,7 +52,7 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/department"
+        android:hint="@string/department"
         app:layout_constraintBottom_toTopOf="@+id/editText5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText3" />
@@ -64,7 +64,7 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/residue_category"
+        android:hint="@string/residue_category"
         app:layout_constraintBottom_toTopOf="@+id/editText6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText4" />
@@ -76,7 +76,7 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/location"
+        android:hint="@string/location"
         app:layout_constraintBottom_toTopOf="@+id/editText7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText5" />
@@ -88,7 +88,7 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/schedule"
+        android:hint="@string/schedule"
         app:layout_constraintBottom_toTopOf="@+id/editText8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText6" />
@@ -100,7 +100,7 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/contact_person"
+        android:hint="@string/contact_person"
         app:layout_constraintBottom_toTopOf="@+id/editText9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText7" />
@@ -112,7 +112,7 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/email"
+        android:hint="@string/email"
         app:layout_constraintBottom_toTopOf="@+id/editText10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText8" />
@@ -124,7 +124,7 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/program_name"
+        android:hint="@string/program_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText9" />
