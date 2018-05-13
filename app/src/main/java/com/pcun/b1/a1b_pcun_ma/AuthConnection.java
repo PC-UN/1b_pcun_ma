@@ -121,13 +121,12 @@ public class AuthConnection {
             public void onResponse(@Nonnull Response<CheckSession.Data> response) {
                 if(response.data() != null) {
                     Log.d(TAG, response.data().checkSession().username() + " has validated session. ");
-                    globalData.setSessionVerified(true);
                     globalData.setCurrentUser(response.data().checkSession().id());
+                    globalData.setSessionVerified(true);
                 } else {
                     Log.d(TAG, "The session does not exist...");
-                    globalData.setSessionVerified(true);
                     globalData.setCurrentUser(-1);
-
+                    globalData.setSessionVerified(true);
                 }
             }
 

@@ -85,6 +85,9 @@ public class UserConnection {
             while (!globalData.isSessionVerified()) ;
             if(globalData.getCurrentUser() != -1)
                 userId = globalData.getCurrentUser();
+            else
+                Toast.makeText(context, "Debes iniciar sesión.", Toast.LENGTH_SHORT).show();
+            globalData.setSessionVerified(false);
         } else {
             Toast.makeText(context, "Debes iniciar sesión.", Toast.LENGTH_SHORT).show();
         }
