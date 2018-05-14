@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">1b_pcun_ma</string>
-    <string name="title_activity_maps">PC-UN</string>
+    <string name="app_name">PC-UN</string>
+    <string name="title_activity_maps">PC-UN Map</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_favourite">Favourites</string>
+    <string name="title_activity_stats">Stats</string>
     <string name="action_settings">Tipo de residuo</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>

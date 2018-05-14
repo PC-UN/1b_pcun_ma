@@ -70,7 +70,7 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
         GoogleMap.OnMarkerClickListener{
 
     int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
-    private GoogleMap mGoogleMap;
+    public static GoogleMap mGoogleMap;
     LocationRequest mLocationRequest;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
@@ -130,6 +130,15 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
             // TODO: Handle the error.
         }
     }
+    private MarkerOptions buildMarker(Place place){
+
+
+        MarkerOptions options = new MarkerOptions()
+                .position(place.getLatLng())
+                .icon(BitmapDescriptorFactory.defaultMarker())
+                .title((String) place.getName());
+        return options;
+    }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
@@ -150,7 +159,7 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mGoogleMap = googleMap;
-
+        //mGoogleMap3 = googleMap;
         mGoogleMap.getUiSettings().setZoomControlsEnabled(true);
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
        // mGoogleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style));
@@ -189,10 +198,10 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
             markerOptions.position(new LatLng(lat, lon));
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
             mGoogleMap.addMarker(markerOptions);
-            String msg = new String("draw marker at: " + (new Double(lat).toString()) + " " + (new Double(lon).toString()));
-            Snackbar.make(findViewById(R.id.map), msg, Snackbar.LENGTH_LONG).show();
+            //String msg = new String("draw marker at: " + (new Double(lat).toString()) + " " + (new Double(lon).toString()));
+            //Snackbar.make(findViewById(R.id.map), msg, Snackbar.LENGTH_LONG).show();
         } else if(status == 2) { // see CreatePointForm.onCreateButtonClick()
-            Snackbar.make(findViewById(R.id.map), "Punto Creado.", Snackbar.LENGTH_LONG).show();
+           // Snackbar.make(findViewById(R.id.map), "Punto Creado.", Snackbar.LENGTH_LONG).show();
         }
 
     }

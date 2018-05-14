@@ -1,5 +1,7 @@
 package com.pcun.b1.a1b_pcun_ma;
 
+import com.google.android.gms.maps.GoogleMap;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,10 @@ import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloClient;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
@@ -20,14 +26,18 @@ import javax.annotation.Nonnull;
 
 import okhttp3.OkHttpClient;
 
+import com.pcun.b1.a1b_pcun_ma.FragmentMapActivity;
+
 public class PointConnection {
     private final String TAG = "debug_lines";
     private ApolloClient apolloClient;
     private OkHttpClient okHttpClient;
-    private static final String URL = "http://35.185.71.134/graphiql";
+    private static final String URL = "http://35.185.71.134/graphql";
 
     private PointAdapter pointAdapter;
     private ListView listView;
+
+    GoogleMap mGoogleMap4;
 
     public PointConnection() {
         this.okHttpClient = new OkHttpClient.Builder().build();
@@ -40,6 +50,7 @@ public class PointConnection {
     public PointAdapter getPointAdapter() {
         return pointAdapter;
     }
+
 
     public int allPoints(final Activity context) {
         apolloClient.query(
@@ -60,9 +71,26 @@ public class PointConnection {
                                                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                                                     Intent intent = new Intent(context, FragmentMapActivity.class);
                                                                     intent.putExtra("from", 1);
-                                                                    intent.putExtra("latitude", data.get(position).latitude());
-                                                                    intent.putExtra("longitude", data.get(position).longitude());
+                                                                    //intent.putExtra("latitude", data.get(position).latitude());
+                                                                    //intent.putExtra("longitude", data.get(position).longitude());
+                                                                    //context.startActivity(intent);
+
+                                                                    //double lat = intent.getDoubleExtra("latitude", 0);
+                                                                    //double lon = intent.getDoubleExtra("longitude", 0);
+                                                                    double lat = intent.getDoubleExtra("latitude", data.get(position).latitude());
+                                                                    double lon = intent.getDoubleExtra("longitude", data.get(position).longitude());
+                                                                    Log.d(TAG, "lat" + lat + "lon " + lon);
+
+
+                                                                    final MarkerOptions markerOptions = new MarkerOptions();
+                                                                    markerOptions.position(new LatLng(lat, lon));
+                                                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+
+                                                                    FragmentMapActivity.mGoogleMap.addMarker(markerOptions);
+                                                                    //mGoogleMap4.addMarker(markerOptions);
                                                                     context.startActivity(intent);
+                                                                    String msg = new String("draw marker at: " + (new Double(lat).toString()) + " " + (new Double(lon).toString()));
+
                                                                 }
                                                             }
                             );
