@@ -17,16 +17,22 @@
     <string name="filter_battery">Pilas</string>
     <string name="filter_medicine">Medicamentos</string>
     <string name="filter_tire">Llantas</string>
-    <string name="disposal_point_name">Nombre Punto</string>
-    <string name="disposal_point_address">Dirección</string>
-    <string name="city">Ciudad</string>
-    <string name="department">Departamento</string>
-    <string name="residue_category">Categoría Residuo</string>
-    <string name="location">Ubicación</string>
-    <string name="schedule">Horario</string>
-    <string name="contact_person">Persona encargada</string>
+    <string name="disposal_point_name">nombre punto</string>
+    <string name="disposal_point_address">dirección</string>
+    <string name="city">ciudad</string>
+    <string name="department">departamento</string>
+    <string name="residue_category">categoría residuo</string>
+    <string name="location">ubicación</string>
+    <string name="schedule">horario</string>
+    <string name="contact_person">persona encargada</string>
     <string name="email">email</string>
     <string name="program_name">programa</string>
     <string name="create_point">Crear Punto</string>
+    <string name="username">nombre de usuario</string>
+    <string name="password">contraseña</string>
+    <string name="access">Acceder</string>
+    <string name="no_account_notice">¿No tienes cuenta de usuario?</string>
+    <string name="register">Registrarse</string>
+    <string name="close_session">Cerrar Sesión</string>
 
 </resources>

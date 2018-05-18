@@ -3,6 +3,7 @@ package com.pcun.b1.a1b_pcun_ma;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -47,11 +48,12 @@ public class AllPointsActivity extends AppCompatActivity implements NavigationVi
     }
 
     public void onButtonClick(View view) {
-        Intent intent = new Intent(this, CreatePointForm.class);
-        startActivity(intent);
-
-
+        if(UserConnection.checkSession(this) > 0) {
+            Intent intent = new Intent(this, CreatePointForm.class);
+            startActivity(intent);
+        }
     }
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.

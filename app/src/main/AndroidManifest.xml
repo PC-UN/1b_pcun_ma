@@ -16,7 +16,8 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon_pcun"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".GlobalData">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -38,7 +39,9 @@
         <activity android:name=".FavouriteActivity" />
         <activity android:name=".AllPointsActivity" />
         <activity android:name=".StatActivity" />
-        <activity android:name=".CreatePointForm"></activity>
+        <activity android:name=".CreatePointForm" />
+        <activity android:name=".AuthenticationActivity" />
+        <activity android:name=".CreateUserActivity"></activity>
     </application>
 
 </manifest>

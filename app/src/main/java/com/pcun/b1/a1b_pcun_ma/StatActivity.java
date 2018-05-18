@@ -17,6 +17,10 @@ public class StatActivity extends AppCompatActivity implements NavigationView.On
 
         DisposalPointConnection disposalPointConnection = new DisposalPointConnection();
         disposalPointConnection.peoplePerDisposal(this);
+
+        String token = ((GlobalData) this.getApplication()).getSessionToken();
+        AuthConnection authConnection = new AuthConnection();
+        authConnection.checkSession(token,this);
     }
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

@@ -4,4 +4,4 @@ mutation createUser($user:UserInput!) {
     username
     email
   }
-} 
+}
