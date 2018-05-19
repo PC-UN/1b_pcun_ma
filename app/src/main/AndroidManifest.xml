@@ -23,8 +23,8 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".FragmentMapActivity"
-            android:label="@string/title_activity_maps">
+            android:name=".AuthenticationActivity"
+            android:label="PC-UN">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pcun.b1.a1b_pcun_ma.FragmentMapActivity" />
@@ -40,7 +40,7 @@
         <activity android:name=".AllPointsActivity" />
         <activity android:name=".StatActivity" />
         <activity android:name=".CreatePointForm" />
-        <activity android:name=".AuthenticationActivity" />
+        <activity android:name=".FragmentMapActivity" />
         <activity android:name=".CreateUserActivity"></activity>
     </application>
 
