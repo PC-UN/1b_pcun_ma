@@ -24,7 +24,7 @@
 
         <activity
             android:name=".FragmentMapActivity"
-            android:label="@string/title_activity_maps">
+            android:label="@string/title_activity_mapa">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pcun.b1.a1b_pcun_ma.FragmentMapActivity" />
@@ -35,13 +35,54 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".FavouriteActivity" />
-        <activity android:name=".AllPointsActivity" />
-        <activity android:name=".StatActivity" />
-        <activity android:name=".CreatePointForm" />
-        <activity android:name=".AuthenticationActivity" />
-        <activity android:name=".CreateUserActivity"></activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pcun.b1.a1b_pcun_ma.FragmentMapActivity" />
+        </activity>
+        <activity
+            android:name=".FavouriteActivity"
+            android:label="@string/title_activity_favourite">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pcun.b1.a1b_pcun_ma.FragmentMapActivity" />
+        </activity>
+        <activity
+            android:name=".AllPointsActivity"
+            android:label="@string/title_activity_points">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pcun.b1.a1b_pcun_ma.FragmentMapActivity"/>
+        </activity>
+        <activity
+            android:name=".StatActivity"
+            android:label="@string/title_activity_stats">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pcun.b1.a1b_pcun_ma.AllPointsActivity" />
+        </activity>
+        <activity android:name=".CreatePointForm"
+            android:label="@string/title_activity_form_create">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pcun.b1.a1b_pcun_ma.FragmentMapActivity" />
+        </activity>
+        <activity
+            android:name=".AuthenticationActivity"
+            android:label="@string/title_activity_sign">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pcun.b1.a1b_pcun_ma.FragmentMapActivity" />
+        </activity>
+        <activity
+            android:name=".CreateUserActivity"
+            android:label="@string/title_activity_signup">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pcun.b1.a1b_pcun_ma.AuthenticationActivity" />
+        </activity>
     </application>
 
 </manifest>

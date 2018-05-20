@@ -214,30 +214,6 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
         }
 
     }
-    private Boolean exit = false;
-    @Override
-    public void onBackPressed() {
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_drawer);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            if (exit) {
-                finishAffinity();
-            } else {
-                Toast.makeText(this, "Presione de nuevo ATRAS para salir.",
-                        Toast.LENGTH_SHORT).show();
-                exit = true;
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        exit = false;
-                    }
-                }, 2 * 1000);
-            }
-        }
-    }
-
 
     @Override
     public void onPause() {
@@ -448,7 +424,7 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
         int id = item.getItemId();
 
         if (id == R.id.nav_account) {
-            Toast.makeText(this, "this is acc", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Mi perfil", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ProfileActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_map) {
