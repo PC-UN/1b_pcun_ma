@@ -20,7 +20,9 @@ public class FavoriteConnection {
     private final String TAG = "debug_lines";
     private ApolloClient apolloClient;
     private OkHttpClient okHttpClient;
-    private static final String URL = "http://35.196.104.239:3307/graphql";
+    private static final String URL = "http://35.196.104.239/graphiql"; //jonv3
+    //private static final String URL = "http://104.196.29.186/graphiql";   //camilov2
+//    private static final String URL = "http://35.196.104.239:3307/graphql"; //pruebami
 
     public FavoriteConnection() {
         this.okHttpClient = new OkHttpClient.Builder().build();
