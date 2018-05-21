@@ -40,7 +40,9 @@
         android:onClick="onAccessPressed"
         android:text="@string/access"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/auth_password" />
+        app:layout_constraintTop_toBottomOf="@+id/auth_password"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/white"/>
 
     <TextView
         android:id="@+id/no_user_notice"
@@ -61,5 +63,7 @@
         android:onClick="onRegisterPressed"
         android:text="@string/register"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/no_user_notice" />
+        app:layout_constraintTop_toBottomOf="@+id/no_user_notice"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/white"/>
 </android.support.constraint.ConstraintLayout>

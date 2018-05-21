@@ -18,22 +18,18 @@ public class CreatePointForm extends AppCompatActivity {
     public void onCreateButtonClick(View view) {
         String disposal_point_name = ((EditText) findViewById(R.id.editText1)).getText().toString();
         String disposal_point_address = ((EditText) findViewById(R.id.editText2)).getText().toString();
-        String city = ((EditText) findViewById(R.id.editText3)).getText().toString();
-        String department = ((EditText) findViewById(R.id.editText4)).getText().toString();
-        String residue_category = ((EditText) findViewById(R.id.editText5)).getText().toString();
-        String location = ((EditText) findViewById(R.id.editText6)).getText().toString();
-        String schedule = ((EditText) findViewById(R.id.editText7)).getText().toString();
-        String contact_person = ((EditText) findViewById(R.id.editText8)).getText().toString();
-        String email = ((EditText) findViewById(R.id.editText9)).getText().toString();
-        String program_name = ((EditText) findViewById(R.id.editText10)).getText().toString();
-        String country = "Colombia";
+        String residue_category = ((EditText) findViewById(R.id.editText3)).getText().toString();
+        String contact_person = ((EditText) findViewById(R.id.editText4)).getText().toString();
+        String contact_email = ((EditText) findViewById(R.id.editText5)).getText().toString();
+        String latitud = ((EditText) findViewById(R.id.editText6)).getText().toString();
+        String longitud = ((EditText) findViewById(R.id.editText7)).getText().toString();
+        String schedule = ((EditText) findViewById(R.id.editText8)).getText().toString();
         String residue_type = "";
         String residue_name = "";
 
 
         DisposalPointConnection disposalPointConnection = new DisposalPointConnection();
-        disposalPointConnection.createDisposalPoint(disposal_point_name, disposal_point_address,city, department,
-                country, residue_category, residue_type, residue_name, location, schedule, program_name, contact_person, email);
+        disposalPointConnection.createDisposalPoint(disposal_point_name, disposal_point_address, residue_category, contact_person, contact_email, latitud, longitud, schedule, residue_type, residue_name);
 
         Intent intent = new Intent(this, FragmentMapActivity.class);
         intent.putExtra("from", 2);

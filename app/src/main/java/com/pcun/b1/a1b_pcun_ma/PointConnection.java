@@ -1,5 +1,6 @@
 package com.pcun.b1.a1b_pcun_ma;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 
 import android.app.Activity;
@@ -32,7 +33,7 @@ public class PointConnection {
     private final String TAG = "debug_lines";
     private ApolloClient apolloClient;
     private OkHttpClient okHttpClient;
-    private static final String URL = "http://35.196.104.239/graphiql"; //jonv3
+    private static final String URL = "http://35.196.104.239/graphql"; //jonv3
     //private static final String URL = "http://104.196.29.186/graphiql";   //camilov2
    // private static final String URL = "http://35.185.71.134/graphql";
 
@@ -65,8 +66,10 @@ public class PointConnection {
                 final ArrayList<AllPoints.AllPoint> data = new ArrayList<>(response.data().allPoints());
                 if(response.data() != null) {
                     context.runOnUiThread(new Runnable() {
+
                         @Override
                         public void run() {
+
                             listView = (ListView) context.findViewById(android.R.id.list);
                             pointAdapter = new PointAdapter(context, data);
                             listView.setAdapter(pointAdapter);
@@ -74,26 +77,23 @@ public class PointConnection {
                                                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                                                     Intent intent = new Intent(context, FragmentMapActivity.class);
                                                                     intent.putExtra("from", 1);
-                                                                    //intent.putExtra("latitude", data.get(position).latitude());
-                                                                    //intent.putExtra("longitude", data.get(position).longitude());
-                                                                    //context.startActivity(intent);
 
-                                                                    //double lat = intent.getDoubleExtra("latitude", 0);
-                                                                    //double lon = intent.getDoubleExtra("longitude", 0);
                                                                     double lat = intent.getDoubleExtra("latitude", data.get(position).latitude());
                                                                     double lon = intent.getDoubleExtra("longitude", data.get(position).longitude());
                                                                     Log.d(TAG, "lat" + lat + "lon " + lon);
 
 
-                                                                    final MarkerOptions markerOptions = new MarkerOptions();
+                                                                    MarkerOptions markerOptions = new MarkerOptions();
                                                                     markerOptions.position(new LatLng(lat, lon));
-                                                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                                                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
 
+                                                                    //context.startActivity(intent);
                                                                     FragmentMapActivity.mGoogleMap.addMarker(markerOptions);
-                                                                    //mGoogleMap4.addMarker(markerOptions);
-                                                                    context.startActivity(intent);
-                                                                    String msg = new String("draw marker at: " + (new Double(lat).toString()) + " " + (new Double(lon).toString()));
+                                                                    FragmentMapActivity.mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 12));
 
+
+                                                                    String msg = new String("draw marker at: " + (new Double(lat).toString()) + " " + (new Double(lon).toString()));
+                                                                    //context.startActivity(intent);
                                                                 }
                                                             }
                             );

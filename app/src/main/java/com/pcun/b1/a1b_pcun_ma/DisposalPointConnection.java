@@ -33,7 +33,7 @@ public class DisposalPointConnection {
     private ApolloClient apolloClient;
     private OkHttpClient okHttpClient;
 
-    private static final String URL = "http://35.196.104.239/graphiql"; //jonv3
+    private static final String URL = "http://35.196.104.239/graphql"; //jonv3
     //private static final String URL = "http://104.196.29.186/graphiql";   //camilov2
     //private static final String URL = "http://35.185.71.134/graphql";         // new
     // private static final String URL = "http://35.196.104.239:3307/graphql"; // old
@@ -225,7 +225,8 @@ public class DisposalPointConnection {
     public void createDisposalPoint(String disposal_point_name, String disposal_point_address,
                                     String city, String department, String country, String residue_category,
                                     String residue_type, String residue_name, String location,
-                                    String schedule, String program_name, String contact_person, String email) {
+                                    String schedule) {
+
 
         DisposalPointInput disposalPointInput = DisposalPointInput.builder()
                 .disposal_point_name(disposal_point_name)
@@ -235,11 +236,26 @@ public class DisposalPointConnection {
                 .residue_type(residue_type)
                 .residue_name(residue_name)
                 .location(location)
-                .schedule(schedule)
-                .postconsumption_program_name(program_name)
-                .contact_person(contact_person)
-                .email(email).build();
+                .schedule(schedule).build();
 
+//FORMULARIO QUE SE NECESITA
+/*
+    public void createDisposalPoint(String disposal_point_name, String disposal_point_address,
+                                String residue_category, String contact_person, String contact_email, String latitud, String longitud,
+                                String residue_type, String residue_name, String schedule) {
+
+        DisposalPointInput disposalPointInput = DisposalPointInput.builder()
+                .disposal_point_name(disposal_point_name)
+                .disposal_point_address(disposal_point_address)
+                .residue_category(residue_category)
+                .contact_person(contact_person)
+                .email(contact_email)
+                .latitud(latitud)
+                .longitud(longitud)
+                .residue_type(residue_type)
+                .residue_name(residue_name)
+                .schedule(schedule).build();
+        */
         CreateDisposalPoint createDisposalPoint = CreateDisposalPoint.builder().disposalPoint(disposalPointInput).build();
 
         apolloClient.mutate(
