@@ -17,6 +17,10 @@
             android:icon="@mipmap/ic_favorite_black_24dp"
             android:title="Favoritos" />
         <item
+            android:id="@+id/nav_campaign"
+            android:icon="@drawable/ic_campaign_black_24dp"
+            android:title="Campañas" />
+        <item
             android:id="@+id/nav_allpoints"
             android:icon="@mipmap/ic_flag_black_24dp"
             android:title="Puntos" />

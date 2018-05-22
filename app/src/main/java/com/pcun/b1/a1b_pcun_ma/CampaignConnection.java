@@ -1,5 +1,6 @@
 package com.pcun.b1.a1b_pcun_ma;
 
+
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
@@ -10,19 +11,22 @@ import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloClient;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
-import com.pcun.b1.a1b_pcun_ma.type.FavoriteInput;
+//import com.pcun.b1.a1b_pcun_ma.type.CampaingInput;
 
 import javax.annotation.Nonnull;
 
 import okhttp3.OkHttpClient;
 
-public class FavoriteConnection {
+public class CampaignConnection {
+
+    /*
+
     private final String TAG = "debug_lines";
     private ApolloClient apolloClient;
     private OkHttpClient okHttpClient;
     private static final String URL = "http://104.196.29.186/graphiql";
 
-    public FavoriteConnection() {
+    public CampaignConnection() {
         this.okHttpClient = new OkHttpClient.Builder().build();
         this.apolloClient = ApolloClient.builder()
                 .serverUrl(URL)
@@ -30,12 +34,12 @@ public class FavoriteConnection {
                 .build();
     }
 
-    public void allFavorites(final AppCompatActivity context) {
+    public void allCampaigns(final AppCompatActivity context) {
         apolloClient.query(
-                AllFavorites.builder().build()
-        ).enqueue(new ApolloCall.Callback<AllFavorites.Data>() {
+                AllCampaigns.builder().build()
+        ).enqueue(new ApolloCall.Callback<AllCampaigns.Data>() {
             @Override
-            public void onResponse(@Nonnull final Response<AllFavorites.Data> response) {
+            public void onResponse(@Nonnull final Response<AllCampaigns.Data> response) {
 
                 Log.d(TAG, "REQUEST SUCCEED!");
 
@@ -48,6 +52,8 @@ public class FavoriteConnection {
                 });
             }
 
+
+
             @Override
             public void onFailure(@Nonnull ApolloException e) {
                 Log.d(TAG, "REQUEST FAILED...");
@@ -56,14 +62,14 @@ public class FavoriteConnection {
         });
     }
 
-    public void favoriteById(int id, final AppCompatActivity context) {
-        FavoriteById favoriteById = FavoriteById.builder().id(id).build();
+    public void campaignById(int id, final AppCompatActivity context) {
+        CampaignById campaignById = CampaignById.builder().id(id).build();
 
         apolloClient.query(
-                favoriteById
-        ).enqueue(new ApolloCall.Callback<FavoriteById.Data>() {
+                campaignById
+        ).enqueue(new ApolloCall.Callback< CampaignById.Data>() {
             @Override
-            public void onResponse(@Nonnull final Response<FavoriteById.Data> response) {
+            public void onResponse(@Nonnull final Response< CampaignById.Data> response) {
                 Log.d(TAG, "REQUEST SUCCEED!");
                 context.runOnUiThread(new Runnable() {
                     @Override
@@ -83,20 +89,26 @@ public class FavoriteConnection {
         });
     }
 
-    public void createFavorite(int user_id, int place_id, String comment) {
-        FavoriteInput favoriteInput = FavoriteInput.builder()
-                .user_id(user_id)
-                .place_id(place_id)
-                .comment(comment)
+    public void createCampaign(String _id, String name, String city, String address, int ubication[], String created_date, String start_date, String end_date, String status, String program ) {
+        CampaignInput campaignInput = CampaignInput.builder()
+                .name(name)
+                .city(city)
+                .address(address)
+                .ubication(ubication)
+                .created_date(created_date)
+                .start_date(start_date)
+                .end_date(end_date)
+                .status(status)
+                .program(program)
                 .build();
 
-        CreateFavorite createFavorite = CreateFavorite.builder().favoriteInput(favoriteInput).build();
+        CreateCampaign createCampaign = CreateCampaign.builder().campaignInput(campaignInput).build();
 
         apolloClient.mutate(
-                createFavorite
-        ).enqueue(new ApolloCall.Callback<CreateFavorite.Data>() {
+                createCampaign
+        ).enqueue(new ApolloCall.Callback<CreateCampaign.Data>() {
             @Override
-            public void onResponse(@Nonnull Response<CreateFavorite.Data> response) {
+            public void onResponse(@Nonnull Response<CreateCampaign.Data> response) {
                 Log.d(TAG, "REQUEST SUCCEED!");
             }
 
@@ -108,21 +120,27 @@ public class FavoriteConnection {
         });
     }
 
-    public void updateFavorite(int id, int user_id, int place_id, String comment) {
-        FavoriteInput favoriteInput = FavoriteInput.builder()
-                .user_id(user_id)
-                .place_id(place_id)
-                .comment(comment)
+    public void updateCampaign(String _id, String name, String city, String address, int ubication[], String created_date, String start_date, String end_date, String status, String program) {
+        CampaignInput campaignInput = CampaignInput.builder()
+                .name(name)
+                .city(city)
+                .address(address)
+                .ubication(ubication)
+                .created_date(created_date)
+                .start_date(start_date)
+                .end_date(end_date)
+                .status(status)
+                .program(program)
                 .build();
 
-        UpdateFavorite updateFavorite = UpdateFavorite.builder()
-                .id(id).favoriteInput(favoriteInput).build();
+        UpdateCampaign updateCampaign = UpdateCampaign.builder()
+                .id(id).campaignInput(campaignInput).build();
 
         apolloClient.mutate(
-                updateFavorite
-        ).enqueue(new ApolloCall.Callback<UpdateFavorite.Data>() {
+                updateCampaign
+        ).enqueue(new ApolloCall.Callback<UpdateCampaign.Data>() {
             @Override
-            public void onResponse(@Nonnull Response<UpdateFavorite.Data> response) {
+            public void onResponse(@Nonnull Response<UpdateCampaign.Data> response) {
                 Log.d(TAG, "REQUEST SUCCEED!");
             }
 
@@ -134,13 +152,13 @@ public class FavoriteConnection {
         });
     }
 
-    public void deleteFavorite(int id) {
-        DeleteFavorite deleteFavorite = DeleteFavorite.builder().id(id).build();
+    public void deleteCampaign(String id) {
+        DeleteCampaign deleteCampaign = DeleteCampaign.builder().id(id).build();
         apolloClient.mutate(
-                deleteFavorite
-        ).enqueue(new ApolloCall.Callback<DeleteFavorite.Data>() {
+                deleteCampaign
+        ).enqueue(new ApolloCall.Callback<DeleteCampaign.Data>() {
             @Override
-            public void onResponse(@Nonnull Response<DeleteFavorite.Data> response) {
+            public void onResponse(@Nonnull Response<DeleteCampaign.Data> response) {
                 Log.d(TAG, "REQUEST SUCCEED!");
             }
 
@@ -150,5 +168,5 @@ public class FavoriteConnection {
                 Log.d(TAG, e.toString());
             }
         });
-    }
+    }*/
 }

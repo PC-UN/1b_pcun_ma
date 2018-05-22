@@ -1,0 +1,66 @@
+query allCampaigns {
+	allCampaigns {
+        _id
+         name
+         city
+         address
+         ubication
+         created_date
+         start_date
+         end_date
+         status
+         program
+  }
+}
+
+query campaignById($id:String!){
+campaignById(id:$id){
+    _id
+    name
+    city
+    address
+    ubication
+    created_date
+    start_date
+    end_date
+    status
+    program
+ }
+}
+
+mutation createCampaign($campaign: CampaignInput!){
+ createCampaign(campaign:$campaign){
+      _id
+      name
+      city
+      address
+      ubication
+      created_date
+      start_date
+      end_date
+      status
+      program
+
+ }
+}
+
+mutation updateCampaign($id:String!, $campaignInput: CampaignInput!){
+ updateCampaign(id:$id, campaign:$campaignInput){
+        id
+ }
+}
+
+mutation deleteCampaign($id:String!){
+  deleteCampaign(id:$id){
+     _id
+     name
+     city
+     address
+     ubication
+     created_date
+     start_date
+     end_date
+     status
+     program
+  }
+}

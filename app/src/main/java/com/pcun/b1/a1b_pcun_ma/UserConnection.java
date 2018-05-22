@@ -20,7 +20,7 @@ public class UserConnection {
     private final String TAG = "debug_lines";
     private ApolloClient apolloClient;
     private OkHttpClient okHttpClient;
-    private static final String URL = "http://35.185.71.134/graphiql";         // new
+    private static final String URL = "http://35.196.104.239/graphql";         // new
 
     public UserConnection() {
         this.okHttpClient = new OkHttpClient.Builder().build();

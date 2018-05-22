@@ -11,19 +11,19 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".GlobalData"
         android:allowBackup="true"
         android:icon="@drawable/icon_pcun"
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon_pcun"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".GlobalData">
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".AuthenticationActivity"
+            android:name=".FragmentMapActivity"
             android:label="PC-UN">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -40,8 +40,9 @@
         <activity android:name=".AllPointsActivity" />
         <activity android:name=".StatActivity" />
         <activity android:name=".CreatePointForm" />
-        <activity android:name=".FragmentMapActivity" />
-        <activity android:name=".CreateUserActivity"></activity>
+        <activity android:name=".AuthenticationActivity" />
+        <activity android:name=".CreateUserActivity" />
+        <activity android:name=".CampaignActivity"></activity>
     </application>
 
 </manifest>
