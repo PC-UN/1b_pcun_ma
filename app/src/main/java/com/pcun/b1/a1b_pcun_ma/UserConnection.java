@@ -96,4 +96,8 @@ public class UserConnection {
         }
         return userId;
     }
+    public static String currentU(Activity context){
+        String userName = ((GlobalData) context.getApplication()).getCurrentUsername();
+        return userName;
+    }
 }

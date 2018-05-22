@@ -491,6 +491,7 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
                 builder.setTitle(R.string.action_settings);
 
                 final CharSequence[] levels = {
+                        getResources().getString(R.string.no_filter),
                         getResources().getString(R.string.filter_battery),
                         getResources().getString(R.string.filter_medicine),
                         getResources().getString(R.string.filter_tire)};

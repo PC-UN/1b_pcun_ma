@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ProfileActivity extends AppCompatActivity{
@@ -26,6 +27,11 @@ public class ProfileActivity extends AppCompatActivity{
                 startActivity(intentBusesStatusActivity);
             }
         });
+        TextView textUser = (TextView)findViewById(R.id.userNAME);
+        //textUser.setText("Angela");
+        //textUser.setText(((GlobalData) UserConnection.checkSession(context.getApplication()).getCurrentUserName()));
+        textUser.setText(UserConnection.currentU(this));
+
 
     }
 

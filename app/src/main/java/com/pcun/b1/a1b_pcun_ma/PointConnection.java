@@ -51,11 +51,40 @@ public class PointConnection {
                 .build();
     }
 
+
     public PointAdapter getPointAdapter() {
         return pointAdapter;
     }
 
 
+    /*
+    public void allFavorites(final AppCompatActivity context) {
+        apolloClient.query(
+                AllFavorites.builder().build()
+        ).enqueue(new ApolloCall.Callback<AllFavorites.Data>() {
+            @Override
+            public void onResponse(@Nonnull final Response<AllFavorites.Data> response) {
+
+                Log.d(TAG, "REQUEST SUCCEED!");
+
+                context.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        TextView txtResponse = (TextView) context.findViewById(R.id.textView);
+                        txtResponse.setText(response.data().toString());
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(@Nonnull ApolloException e) {
+                Log.d(TAG, "REQUEST FAILED...");
+                Log.d(TAG, e.toString());
+            }
+        });
+    }
+
+    */
     public int allPoints(final Activity context) {
         apolloClient.query(
                 AllPoints.builder().build()
