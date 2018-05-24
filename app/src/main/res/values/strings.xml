@@ -18,11 +18,11 @@
     <string name="filter_medicine">Medicamentos</string>
     <string name="filter_tire">Llantas</string>
     <string name="disposal_point_name">nombre punto</string>
-    <string name="disposal_point_address">dirección</string>
-    <string name="city">ciudad</string>
+    <string name="disposal_point_address">Dirección</string>
+    <string name="city">Ciudad</string>
     <string name="department">departamento</string>
     <string name="residue_category">categoría residuo</string>
-    <string name="location">ubicación</string>
+    <string name="location">Ubicación</string>
     <string name="schedule">horario</string>
     <string name="contact_person">persona encargada</string>
     <string name="email">Correo</string>
@@ -36,6 +36,13 @@
     <string name="close_session">Cerrar Sesión</string>
     <string name="success_message">Registration Successfull</string>
     <string name="hint_password">Contraseña</string>
+    <string name="hint_campana">Nombre Campaña</string>
+    <string name="hint_create_date">Fecha Creacion</string>
+    <string name="hint_start_date">Fecha Inicio</string>
+    <string name="hint_end_date">Fecha Fin</string>
+    <string name="hint_estatus">Estado</string>
+    <string name="hint_program">Programa</string>
+    <string name="hint_crear_campana">Crear Campaña</string>
 
 
 </resources>

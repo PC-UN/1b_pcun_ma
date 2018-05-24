@@ -462,6 +462,10 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
         } else if (id == R.id.nav_favorito) {
             Intent intent = new Intent(this, FavouriteActivity.class);
             startActivity(intent);
+        } else if (id == R.id.nav_campaign) {
+                Intent intent = new Intent(this, CampaignActivity.class);
+                startActivity(intent);
+            
         } else if (id == R.id.nav_allpoints) {
             Intent intent = new Intent(this, AllPointsActivity.class);
             startActivity(intent);

@@ -11,7 +11,7 @@ import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloClient;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
-//import com.pcun.b1.a1b_pcun_ma.type.CampaingInput;
+import com.pcun.b1.a1b_pcun_ma.type.CampaignInput;
 
 import javax.annotation.Nonnull;
 
@@ -19,12 +19,12 @@ import okhttp3.OkHttpClient;
 
 public class CampaignConnection {
 
-    /*
 
+    private CampaignAdapter campaignAdapter;
     private final String TAG = "debug_lines";
     private ApolloClient apolloClient;
     private OkHttpClient okHttpClient;
-    private static final String URL = "http://104.196.29.186/graphiql";
+    private static final String URL = "http://35.196.104.239/graphql";
 
     public CampaignConnection() {
         this.okHttpClient = new OkHttpClient.Builder().build();
@@ -62,7 +62,7 @@ public class CampaignConnection {
         });
     }
 
-    public void campaignById(int id, final AppCompatActivity context) {
+    public void campaignById(String id, final AppCompatActivity context) {
         CampaignById campaignById = CampaignById.builder().id(id).build();
 
         apolloClient.query(
@@ -89,12 +89,16 @@ public class CampaignConnection {
         });
     }
 
-    public void createCampaign(String _id, String name, String city, String address, int ubication[], String created_date, String start_date, String end_date, String status, String program ) {
+    public CampaignAdapter getCampaingAdapter() {
+        return campaignAdapter;
+    }
+
+    public void createCampaign(String _id, String name, String city, String address, String created_date, String start_date, String end_date, String status, String program) {
         CampaignInput campaignInput = CampaignInput.builder()
                 .name(name)
                 .city(city)
                 .address(address)
-                .ubication(ubication)
+
                 .created_date(created_date)
                 .start_date(start_date)
                 .end_date(end_date)
@@ -102,7 +106,7 @@ public class CampaignConnection {
                 .program(program)
                 .build();
 
-        CreateCampaign createCampaign = CreateCampaign.builder().campaignInput(campaignInput).build();
+        CreateCampaign createCampaign = CreateCampaign.builder().campaign(campaignInput).build();
 
         apolloClient.mutate(
                 createCampaign
@@ -119,6 +123,8 @@ public class CampaignConnection {
             }
         });
     }
+
+    /*
 
     public void updateCampaign(String _id, String name, String city, String address, int ubication[], String created_date, String start_date, String end_date, String status, String program) {
         CampaignInput campaignInput = CampaignInput.builder()
@@ -167,6 +173,6 @@ public class CampaignConnection {
                 Log.d(TAG, "REQUEST FAILED...");
                 Log.d(TAG, e.toString());
             }
-        });
-    }*/
+        });*/
+
 }
