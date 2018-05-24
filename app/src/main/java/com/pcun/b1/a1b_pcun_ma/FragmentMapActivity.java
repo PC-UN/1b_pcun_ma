@@ -440,7 +440,12 @@ public class FragmentMapActivity extends AppCompatActivity implements OnMapReady
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+        Intent intent = new Intent(this, CommentActivity.class);
+        int idPunto = 7695;
+        intent.putExtra("idPunto", idPunto);
+        startActivity(intent);
         return false;
+
     }
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

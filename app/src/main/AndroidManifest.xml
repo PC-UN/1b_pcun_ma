@@ -42,7 +42,8 @@
         <activity android:name=".CreatePointForm" />
         <activity android:name=".AuthenticationActivity" />
         <activity android:name=".CreateUserActivity" />
-        <activity android:name=".CampaignActivity"></activity>
+        <activity android:name=".CampaignActivity" />
+        <activity android:name=".CommentActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,12 @@
+query commentByPoint($id:Int!) {
+  commentByPoint(id:$id){
+    content
+    score
+  }
+}
+
+mutation createComment($comment:CommentInput!){
+  createComment(comment:$comment){
+    _id
+  }
+}
