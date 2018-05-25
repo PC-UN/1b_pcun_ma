@@ -13,6 +13,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -29,17 +30,30 @@ public class FavouriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_favourite);
 
+        EditText filter_text = (EditText) findViewById(R.id.search_filter);
+
         Log.d(TAG, "Puntos favoritos ");
         final FavoriteConnection favoriteConnection =
                 new FavoriteConnection();
-        favoriteConnection.favoriteById(((GlobalData) this.getApplication()).getCurrentUser(), this);
-/*
-        ListView lista;
-        ArrayAdapter<String> adaptador;
+        //favoriteConnection.favoriteById(((GlobalData) this.getApplication()).getCurrentUser(), this);
+        favoriteConnection.favoriteById(5,this);
 
-        lista = (ListView)findViewById(android.R.id.list);
-        adaptador = new ArrayAdapter<>(this, R.layout.nav_favourite);
-        lista.setAdapter(adaptador);*/
+        filter_text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                favoriteConnection.getFavoriteAdapter().getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
 }

@@ -77,25 +77,32 @@ public class FavoriteConnection {
 
     //public void favoriteById(int id, final AppCompatActivity context) {
     public int favoriteById(int id, final AppCompatActivity context) {
-        FavoriteById favoriteById = FavoriteById.builder().id(id).build();
+        final FavoriteById favoriteById = FavoriteById.builder().id(id).build();
 
         apolloClient.query(
                 FavoriteById.builder().id(id).build()
         ).enqueue(new ApolloCall.Callback<FavoriteById.Data>() {
             @Override
-            public void onResponse(@Nonnull final Response<FavoriteById.Data> response) {
+            public void onResponse(@Nonnull Response<FavoriteById.Data> response) {
                 final ArrayList<FavoriteById.FavoriteById1> data = new ArrayList<>(response.data().FavoriteById());
-                Log.d(TAG, "REQUEST SUCCEED!");
-                if (response.data() != null) {
+                Log.d(TAG, "REQUEST SUCCEED!" + data.toString());
+                if(response.data() != null) {
                     context.runOnUiThread(new Runnable() {
+
                         @Override
                         public void run() {
                             listView = (ListView) context.findViewById(android.R.id.list);
                             favoriteAdapter = new FavoriteAdapter(context, data);
                             listView.setAdapter(favoriteAdapter);
-                            //int txtResponse = ((GlobalData) context.getApplication()).getCurrentUser();
-                            TextView txtResponse = (TextView) context.findViewById(R.id.textView);
-                            txtResponse.setText(response.data().toString());
+                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    Intent intent = new Intent(context, FragmentMapActivity.class);
+                                    intent.putExtra("from", 1);
+                                    context.startActivity(intent);
+
+                                }
+                                                            }
+                            );
                         }
                     });
                 } else {
@@ -106,7 +113,7 @@ public class FavoriteConnection {
 
             @Override
             public void onFailure(@Nonnull ApolloException e) {
-                Log.d(TAG, "REQUEST FAILED...");
+                Log.d(TAG, "REQUEST FAILED fav...");
                 Log.d(TAG, e.toString());
             }
         });
@@ -211,4 +218,6 @@ public class FavoriteConnection {
             }
         });
     }
+
+
 }
