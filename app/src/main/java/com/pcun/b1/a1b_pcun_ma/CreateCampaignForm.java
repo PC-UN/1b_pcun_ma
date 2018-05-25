@@ -22,7 +22,6 @@ public class CreateCampaignForm extends AppCompatActivity {
         String create_date = ((EditText) findViewById(R.id.editText5_create_date)).getText().toString();
         String start_date = ((EditText) findViewById(R.id.editText6_star_date)).getText().toString();
         String end_date = ((EditText) findViewById(R.id.editText7_end_date)).getText().toString();
-        //String contact_person = ((EditText) findViewById(R.id.editText8_status)).getText().toString();
         String status = ((EditText) findViewById(R.id.editText8_status)).getText().toString();
         String program = ((EditText) findViewById(R.id.editText9_program)).getText().toString();
 

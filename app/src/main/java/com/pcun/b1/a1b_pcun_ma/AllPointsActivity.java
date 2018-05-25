@@ -72,6 +72,9 @@ public class AllPointsActivity extends AppCompatActivity implements NavigationVi
         } else if (id == R.id.nav_allpoints) {
             Intent intent = new Intent(this, AllPointsActivity.class);
             startActivity(intent);
+        }  else if (id == R.id.nav_all_campaign) {
+            Intent intent = new Intent(this, AllCampaignActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_estadisticas) {
             Intent intent = new Intent(this, StatActivity.class);
             startActivity(intent);

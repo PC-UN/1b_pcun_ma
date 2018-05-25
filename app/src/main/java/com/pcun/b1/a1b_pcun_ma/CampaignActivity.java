@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+
 import android.view.MenuItem;
+
 import android.widget.Toast;
 
 public class CampaignActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -19,9 +21,9 @@ public class CampaignActivity extends AppCompatActivity implements NavigationVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.nav_campaign);
+        setContentView(R.layout.nav_all_campaign);
 
-        mDrawerLayout = findViewById(R.id.nav_campaign);
+        mDrawerLayout = findViewById(R.id.nav_all_campaign);
         mToggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(mToggle);
@@ -44,8 +46,8 @@ public class CampaignActivity extends AppCompatActivity implements NavigationVie
         } else if (id == R.id.nav_favorito) {
             Intent intent = new Intent(this, FavouriteActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_campaign) {
-            Intent intent = new Intent(this, CampaignActivity.class);
+        } else if (id == R.id.nav_all_campaign) {
+            Intent intent = new Intent(this, AllCampaignActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_allpoints) {
             Intent intent = new Intent(this, AllPointsActivity.class);

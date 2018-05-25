@@ -22,5 +22,12 @@ mutation createCampaign($campaign: CampaignInput!){
 query allCampaign {
 	allCampaigns {
         name
+        city
+        address
+        created_date
+        start_date
+        end_date
+        status
+        program
   }
 }

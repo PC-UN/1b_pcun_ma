@@ -12,10 +12,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class CampaignAdapter extends ArrayAdapter<AllCampaigns.AllCampaign> {
+public class CampaignAdapter extends ArrayAdapter<AllCampaign.AllCampaign1> {
 
     final String TAG = "debug_lines";
-    private ArrayList<AllCampaigns.AllCampaign> dataset;
+    private ArrayList<AllCampaign.AllCampaign1> dataset;
     Context mContext;
 
     private static class ViewHolder {
@@ -29,7 +29,7 @@ public class CampaignAdapter extends ArrayAdapter<AllCampaigns.AllCampaign> {
         TextView txt_program;
         ImageView info;
     }
-    public CampaignAdapter(Context context, ArrayList<AllCampaigns.AllCampaign> data) {
+    public CampaignAdapter(Context context, ArrayList<AllCampaign.AllCampaign1> data) {
         super(context, R.layout.campaign_item, data);
         this.dataset = data;
         this.mContext = context;
@@ -37,7 +37,7 @@ public class CampaignAdapter extends ArrayAdapter<AllCampaigns.AllCampaign> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        AllCampaigns.AllCampaign campaign = getItem(position);
+        AllCampaign.AllCampaign1 campaign = getItem(position);
         ViewHolder viewHolder;
         final View result;
 

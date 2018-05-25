@@ -8,7 +8,7 @@ public class SOAConnection {
     private final String TAG = "debug_lines";
     private ApolloClient apolloClient;
     private OkHttpClient okHttpClient;
-    private static final String URL = "http://104.196.29.186/graphiql";
+    private static final String URL = "http://35.196.104.239/graphql";
 
     public SOAConnection() {
         this.okHttpClient = new OkHttpClient.Builder().build();

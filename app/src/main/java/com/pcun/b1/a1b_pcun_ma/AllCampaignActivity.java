@@ -27,7 +27,7 @@ public class AllCampaignActivity extends AppCompatActivity implements Navigation
         Log.d(TAG, "Descargando todas las campañas... esperar...");
         final CampaignConnection campaignConnection =
                 new CampaignConnection();
-        campaignConnection.allCampaigns(this);
+        campaignConnection.allCampaign(this);
 
         filter_text.addTextChangedListener(new TextWatcher() {
             @Override
@@ -47,12 +47,12 @@ public class AllCampaignActivity extends AppCompatActivity implements Navigation
         });
     }
 
-    //public void onButtonClick(View view) {
+    public void onButtonClick(View view) {
       //  if(UserConnection.checkSession(this) > 0) {
-        //    Intent intent = new Intent(this, CreatePointForm.class);
-          //  startActivity(intent);
+            Intent intent = new Intent(this, CreateCampaignForm.class);
+            startActivity(intent);
         //}
-    //}
+    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
